@@ -48,7 +48,7 @@
 
 
 - (void)firstRestKitExample{
-    
+    //Simple parsing of JSON to object
     RKObjectMapping *articaleMapping = [RKObjectMapping mappingForClass:[Articale class]];
     [articaleMapping addAttributeMappingsFromDictionary:
      @{@"title": @"title",
@@ -72,7 +72,7 @@
 
 
 - (void)secondRestKitExample{
-    
+    //Simple parsing JSON to object that containes another object Articale containes Author
     //Author
     RKObjectMapping* authorMapping = [RKObjectMapping mappingForClass:[Author class] ];
     // NOTE: When your source and destination key paths are symmetrical, you can use mapAttributes: as a shortcut
@@ -88,6 +88,8 @@
     
     [articaleMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"author" toKeyPath:@"author" withMapping:authorMapping]];
     RKResponseDescriptor *articaleDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articaleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    RKObjectMapping *backArticaleMapping = [articaleMapping inverseMapping];
     
     NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/second_example.json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
