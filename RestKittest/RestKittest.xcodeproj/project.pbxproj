@@ -19,6 +19,7 @@
 		5067C36316CADB4600B51B21 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5067C36116CADB4600B51B21 /* MainStoryboard.storyboard */; };
 		5067C36616CADB4600B51B21 /* AVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067C36516CADB4600B51B21 /* AVViewController.m */; };
 		506B59B316CD6BB600D9CA99 /* Articale.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59B216CD6BB600D9CA99 /* Articale.m */; };
+		506B59B616D0253F00D9CA99 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59B516D0253F00D9CA99 /* Author.m */; };
 		9221D65CF71C4D70BD2698DB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015FA9519A5141E986AF1768 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -40,8 +41,10 @@
 		5067C36216CADB4600B51B21 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		5067C36416CADB4600B51B21 /* AVViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AVViewController.h; sourceTree = "<group>"; };
 		5067C36516CADB4600B51B21 /* AVViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AVViewController.m; sourceTree = "<group>"; };
-		506B59B116CD6BB600D9CA99 /* Articale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Articale.h; sourceTree = "<group>"; };
-		506B59B216CD6BB600D9CA99 /* Articale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Articale.m; sourceTree = "<group>"; };
+		506B59B116CD6BB600D9CA99 /* Articale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Articale.h; path = RestKittest/Articale.h; sourceTree = "<group>"; };
+		506B59B216CD6BB600D9CA99 /* Articale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Articale.m; path = RestKittest/Articale.m; sourceTree = "<group>"; };
+		506B59B416D0253F00D9CA99 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Author.h; path = RestKittest/Author.h; sourceTree = "<group>"; };
+		506B59B516D0253F00D9CA99 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Author.m; path = RestKittest/Author.m; sourceTree = "<group>"; };
 		70B75E7D811D40B3ACF6AC22 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -63,6 +66,7 @@
 		5067C33D16CADB4600B51B21 = {
 			isa = PBXGroup;
 			children = (
+				506B59B716D0254E00D9CA99 /* Objects */,
 				5067C34F16CADB4600B51B21 /* RestKittest */,
 				5067C34816CADB4600B51B21 /* Frameworks */,
 				5067C34716CADB4600B51B21 /* Products */,
@@ -98,8 +102,6 @@
 				5067C36416CADB4600B51B21 /* AVViewController.h */,
 				5067C36516CADB4600B51B21 /* AVViewController.m */,
 				5067C35016CADB4600B51B21 /* Supporting Files */,
-				506B59B116CD6BB600D9CA99 /* Articale.h */,
-				506B59B216CD6BB600D9CA99 /* Articale.m */,
 			);
 			path = RestKittest;
 			sourceTree = "<group>";
@@ -116,6 +118,17 @@
 				5067C35F16CADB4600B51B21 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		506B59B716D0254E00D9CA99 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				506B59B416D0253F00D9CA99 /* Author.h */,
+				506B59B516D0253F00D9CA99 /* Author.m */,
+				506B59B116CD6BB600D9CA99 /* Articale.h */,
+				506B59B216CD6BB600D9CA99 /* Articale.m */,
+			);
+			name = Objects;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +220,7 @@
 				5067C35A16CADB4600B51B21 /* AVAppDelegate.m in Sources */,
 				5067C36616CADB4600B51B21 /* AVViewController.m in Sources */,
 				506B59B316CD6BB600D9CA99 /* Articale.m in Sources */,
+				506B59B616D0253F00D9CA99 /* Author.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

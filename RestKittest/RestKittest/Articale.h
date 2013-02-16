@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Author.h"
 
 @interface Articale : NSObject
 @property (nonatomic, copy) NSString* title;
 @property (nonatomic, copy) NSString* body;
-@property (nonatomic, copy) NSString* author;
-@property (nonatomic, strong) NSDate*   publicationDate;
+@property (nonatomic, strong) Author* author;
+@property (nonatomic, strong) NSDate* publicationDate;
 @end

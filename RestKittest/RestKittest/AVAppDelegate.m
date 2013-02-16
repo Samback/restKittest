@@ -15,7 +15,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [self initRestKit];
+    [self secondRestKitExample];
     return YES;
 }
 							
@@ -47,7 +47,8 @@
 }
 
 
-- (void)initRestKit{
+- (void)firstRestKitExample{
+    
     RKObjectMapping *articaleMapping = [RKObjectMapping mappingForClass:[Articale class]];
     [articaleMapping addAttributeMappingsFromDictionary:
      @{@"title": @"title",
@@ -57,7 +58,7 @@
      }];
     RKResponseDescriptor *articaleDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articaleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
     
-    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/my_article.json"];
+    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/first_example.json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[articaleDescriptor ]];
     [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
@@ -68,5 +69,41 @@
     
     [objectRequestOperation start];
 }
+
+
+- (void)secondRestKitExample{
+    
+    //Author
+    RKObjectMapping* authorMapping = [RKObjectMapping mappingForClass:[Author class] ];
+    // NOTE: When your source and destination key paths are symmetrical, you can use mapAttributes: as a shortcut
+    [authorMapping addAttributeMappingsFromArray:@[@"name", @"email"]];
+    
+    
+    RKObjectMapping *articaleMapping = [RKObjectMapping mappingForClass:[Articale class]];
+    [articaleMapping addAttributeMappingsFromDictionary:
+     @{@"title": @"title",
+     @"body" : @"body",
+     @"publiction_date": @"publicationDate"
+     }];
+    
+    [articaleMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"author" toKeyPath:@"author" withMapping:authorMapping]];
+    RKResponseDescriptor *articaleDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articaleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/second_example.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[articaleDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKLogInfo(@"Load collection of Articles: %@", mappingResult.array);
+        for (Articale *articale in mappingResult.array) {
+            NSLog(@"Articale title = %@ body %@ DATE[%@] Autor name %@ Author email %@", articale.title, articale.body, articale.publicationDate, articale.author.name, articale.author.email);
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        RKLogError(@"Operation failed with error: %@", error);
+    }];
+    
+    [objectRequestOperation start];
+}
+
+
 
 @end
