@@ -7,12 +7,15 @@
 //
 
 #import "AVAppDelegate.h"
+#import "Articale.h"
+
 
 @implementation AVAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [self initRestKit];
     return YES;
 }
 							
@@ -41,6 +44,29 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)initRestKit{
+    RKObjectMapping *articaleMapping = [RKObjectMapping mappingForClass:[Articale class]];
+    [articaleMapping addAttributeMappingsFromDictionary:
+     @{@"title": @"title",
+     @"body" : @"body",
+     @"author" : @"author",
+     @"publiction_date": @"publicationDate"
+     }];
+    RKResponseDescriptor *articaleDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articaleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/my_article.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[articaleDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKLogInfo(@"Load collection of Articles: %@", mappingResult.array);
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        RKLogError(@"Operation failed with error: %@", error);
+    }];
+    
+    [objectRequestOperation start];
 }
 
 @end
