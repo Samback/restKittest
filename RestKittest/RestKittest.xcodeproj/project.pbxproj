@@ -20,6 +20,10 @@
 		5067C36616CADB4600B51B21 /* AVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5067C36516CADB4600B51B21 /* AVViewController.m */; };
 		506B59B316CD6BB600D9CA99 /* Articale.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59B216CD6BB600D9CA99 /* Articale.m */; };
 		506B59B616D0253F00D9CA99 /* Author.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59B516D0253F00D9CA99 /* Author.m */; };
+		506B59BA16D02DAF00D9CA99 /* MyDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 506B59B816D02DAF00D9CA99 /* MyDB.xcdatamodeld */; };
+		506B59C016D02F1600D9CA99 /* Article.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59BF16D02F1600D9CA99 /* Article.m */; };
+		506B59C516D0C45E00D9CA99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 506B59C416D0C45E00D9CA99 /* User.m */; };
+		5073F0BA16D1586B00244998 /* Art.m in Sources */ = {isa = PBXBuildFile; fileRef = 5073F0B916D1586B00244998 /* Art.m */; };
 		9221D65CF71C4D70BD2698DB /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 015FA9519A5141E986AF1768 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,13 @@
 		506B59B216CD6BB600D9CA99 /* Articale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Articale.m; path = RestKittest/Articale.m; sourceTree = "<group>"; };
 		506B59B416D0253F00D9CA99 /* Author.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Author.h; path = RestKittest/Author.h; sourceTree = "<group>"; };
 		506B59B516D0253F00D9CA99 /* Author.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Author.m; path = RestKittest/Author.m; sourceTree = "<group>"; };
+		506B59B916D02DAF00D9CA99 /* MyDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyDB.xcdatamodel; sourceTree = "<group>"; };
+		506B59BE16D02F1600D9CA99 /* Article.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Article.h; sourceTree = "<group>"; };
+		506B59BF16D02F1600D9CA99 /* Article.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Article.m; sourceTree = "<group>"; };
+		506B59C316D0C45E00D9CA99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = RestKittest/User.h; sourceTree = "<group>"; };
+		506B59C416D0C45E00D9CA99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = RestKittest/User.m; sourceTree = "<group>"; };
+		5073F0B816D1586B00244998 /* Art.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Art.h; path = RestKittest/Art.h; sourceTree = "<group>"; };
+		5073F0B916D1586B00244998 /* Art.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Art.m; path = RestKittest/Art.m; sourceTree = "<group>"; };
 		70B75E7D811D40B3ACF6AC22 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -109,6 +120,9 @@
 		5067C35016CADB4600B51B21 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				506B59B816D02DAF00D9CA99 /* MyDB.xcdatamodeld */,
+				506B59BE16D02F1600D9CA99 /* Article.h */,
+				506B59BF16D02F1600D9CA99 /* Article.m */,
 				5067C35116CADB4600B51B21 /* RestKittest-Info.plist */,
 				5067C35216CADB4600B51B21 /* InfoPlist.strings */,
 				5067C35516CADB4600B51B21 /* main.m */,
@@ -127,6 +141,10 @@
 				506B59B516D0253F00D9CA99 /* Author.m */,
 				506B59B116CD6BB600D9CA99 /* Articale.h */,
 				506B59B216CD6BB600D9CA99 /* Articale.m */,
+				506B59C316D0C45E00D9CA99 /* User.h */,
+				506B59C416D0C45E00D9CA99 /* User.m */,
+				5073F0B816D1586B00244998 /* Art.h */,
+				5073F0B916D1586B00244998 /* Art.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -221,6 +239,10 @@
 				5067C36616CADB4600B51B21 /* AVViewController.m in Sources */,
 				506B59B316CD6BB600D9CA99 /* Articale.m in Sources */,
 				506B59B616D0253F00D9CA99 /* Author.m in Sources */,
+				506B59BA16D02DAF00D9CA99 /* MyDB.xcdatamodeld in Sources */,
+				506B59C016D02F1600D9CA99 /* Article.m in Sources */,
+				506B59C516D0C45E00D9CA99 /* User.m in Sources */,
+				5073F0BA16D1586B00244998 /* Art.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +370,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		506B59B816D02DAF00D9CA99 /* MyDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				506B59B916D02DAF00D9CA99 /* MyDB.xcdatamodel */,
+			);
+			currentVersion = 506B59B916D02DAF00D9CA99 /* MyDB.xcdatamodel */;
+			path = MyDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5067C33E16CADB4600B51B21 /* Project object */;
 }

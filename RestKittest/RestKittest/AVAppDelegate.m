@@ -8,6 +8,9 @@
 
 #import "AVAppDelegate.h"
 #import "Articale.h"
+#import "Article.h"
+#import "Art.h"
+#import "User.h"
 
 
 @implementation AVAppDelegate
@@ -15,7 +18,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [self secondRestKitExample];
+    [self fourthExample];
     return YES;
 }
 							
@@ -57,6 +60,8 @@
      @"publiction_date": @"publicationDate"
      }];
     RKResponseDescriptor *articaleDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:articaleMapping pathPattern:nil keyPath:@"articles" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    //How to add to shared manager!!!!!
+    [[RKObjectManager sharedManager] addResponseDescriptor:articaleDescriptor];
     
     NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/first_example.json"];
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
@@ -107,5 +112,97 @@
 }
 
 
+- (void)thirdExample{
+    RKObjectManager* objectManager = [RKObjectManager managerWithBaseURL:[NSURL URLWithString:@"http://localhost:8888"]];
+    NSURL *modelURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"MyDB" ofType:@"momd"]];
+    // NOTE: Due to an iOS 5 bug, the managed object model returned is immutable.
+    NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL] mutableCopy];
+    RKManagedObjectStore *managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:managedObjectModel];
+    objectManager.managedObjectStore = managedObjectStore;
+    
+    
+    RKEntityMapping* articleMapping = [RKEntityMapping mappingForEntityForName:@"Article" inManagedObjectStore:managedObjectStore];
+    [articleMapping addAttributeMappingsFromDictionary:@{
+     @"id": @"articleID",
+     @"title": @"title",
+     @"body": @"body",
+     @"publication_date": @"publicationDate"
+     }];
+    articleMapping.identificationAttributes = @[ @"articleID" ];
+}
+
+- (void)fourthExample{
+    //JSON
+//    {
+//        "blake": {
+//            "email": "blake@restkit.org",
+//            "favorite_animal": "Monkey"
+//        },
+//        "sarah": {
+//            "email": "sarah@restkit.org",
+//            "favorite_animal": "Cat"
+//        }
+//    }
+    
+    RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[User class] ];
+    mapping.forceCollectionMapping = YES;
+    [mapping addAttributeMappingFromKeyOfRepresentationToAttribute:@"username"];
+    [mapping addAttributeMappingsFromDictionary:@{
+     @"(username).email": @"email",
+     @"(username).favorite_animal": @"favoriteAnimal"
+     }];
+    
+    RKResponseDescriptor *userDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:mapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+    
+    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/fourth_example.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[userDescriptor]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKLogInfo(@"Load collection of User: %@", mappingResult.array);
+        for (User *user in mappingResult.array) {
+            NSLog(@"User name = %@ email %@ favorite animal %@", user.username, user.email, user.favoriteAnimal);
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        RKLogError(@"Operation failed with error: %@", error);
+    }];
+    
+    [objectRequestOperation start];    
+}
+
+
+- (void)fifthExample{
+    //For json type
+//    [
+//     { "title": "RestKit Object Mapping Intro",
+//         "body": "This article details how to use RestKit object mapping...",
+//         "author": "Bill Watson",
+//         "publication_date": "7/4/2011"
+//     }
+//     ]
+    RKObjectMapping* artMapping = [RKObjectMapping mappingForClass:[Art class]];
+    [artMapping addAttributeMappingsFromArray:@[@"title", @"body", @"author"]];
+    [artMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:@"publication_date" toKeyPath:@"publicationDate"]];
+
+    
+    RKResponseDescriptor *artDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:artMapping pathPattern:nil keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
+    
+  //  [[RKObjectManager sharedManager] addResponseDescriptor:responseDescriptor]];
+    
+    
+    NSURL *URL = [NSURL URLWithString:@"http://localhost:8888/fifth_example.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[artDescriptor]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        RKLogInfo(@"Load collection of User: %@", mappingResult.array);
+        for (Art *art in mappingResult.array) {
+            NSLog(@"User title = %@ body %@ favorite animal %@", art.title, art.body, art.publicationDate);
+        }
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        RKLogError(@"Operation failed with error: %@", error);
+    }];
+    [objectRequestOperation start];
+
+}
 
 @end
